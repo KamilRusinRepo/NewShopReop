@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="/css/home_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+    <!-- navigation menu -->
+    <div th:replace="fragments/navigation_menu :: navigation"></div>
+
+    <!-- banner -->
+    <div class="banner">
+        <div class="list">
+            <div class="item">
+                <img src="phones15.png" alt="ok" />
+            </div>
+            <div class="item">
+                <img src=https://arafatelecom.com/wp-content/uploads/2022/12/brand-banner-apple.jpg>
+            </div>
+            <div class="item">
+                <img src="../photos/macbookm3bannerr.png">
+            </div>
+        </div>
+        <!-- buttons previous & next -->
+        <div class="buttons">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+
+        <!-- dots -->
+        <ul class="dots">
+            <li class="active"></li>
+            <li class="noactive"></li>
+            <li class="noactive"></li>
+        </ul>
+    </div>
+
+    <!-- Apple slider -->
+
+    <h4 class="Apple"><b>Apple</b></h4>
+
+        <div class="Apple_slider">
+            <button id="A_left_button" class="Apple_button"><</button>
+            <div class="Apple_cards_frame">
+                <div class="Apple_card">
+                    <div class="card_content">
+                        <p class="product">iPhone 15 Pro</p>
+                        <div class="card_image">
+                            <img src="https://prod-api.mediaexpert.pl/api/images/gallery_500_500/thumbnails/images/58/5860404/Smartfon-APPLE-iPhone-15-Pro-Tytan-blekitny-1.jpg">
+                        </div>
+                        <div class="bottom">
+                            <p class="price">From <span>500</span>zł</p>
+                            <a th:href="@{'/add/' + 14}" class="buy"><p>Buy</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="A_right_button" class="Apple_button">></button>
+        </div>
+
+    <!-- Samsung slider -->    
+    <h4 class="Samsung"><b>Samsung</b></h4>
+
+    <div class="Samsung_slider">
+        <button id="S_left_button" class="Samsung_button"><</button>
+        <div class="Samsung_cards_frame">
+            <div class="Samsung_card">
+                <div class="card_content">
+                    <p class="S_product">Samsung Galaxy S23 Ultra</p>
+                    <div class="S_card_image">
+                        <img src="https://prod-api.mediaexpert.pl/api/images/gallery_500_500/thumbnails/images/50/5073808/Smartfon-SAMSUNG-Galaxy-S23-Ultra-5G-Czarny-front-tyl-1.jpg">
+                    </div>
+                    <div class="S_bottom">
+                        <p class="price">From 500zł</p>
+                        <a th:href="@{'/add/' + 2}" class="buy"><p>Buy</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="S_right_button" class="Samsung_button">></button>
+    </div>
+        <script>
+        const slider = document.querySelector(".Apple_cards_frame")
+        const arrow = document.querySelectorAll(".Apple_button");
+        const firstCardWidth = slider.querySelector(".Apple_card").offsetWidth;
+        const paragraph = document.getElementById("ok");
+        const text = document.getElementById("ok").innerText;
+        const textLength = text.trim().length;
+
+        if(textLength >= 20){
+            paragraph.style.display = "flex";
+        }else{
+            paragraph.style.display = "block";
+        }
+
+        const sliders = document.querySelector(".Samsung_cards_frame")
+        const arrows = document.querySelectorAll(".Samsung_button");
+        const firstCardWidths = sliders.querySelector(".Samsung_card").offsetWidth;
+
+
+        arrows.forEach(btn => {
+            btn.addEventListener("click", () => {
+                sliders.scrollLeft += btn.id === "S_left_button" ? -firstCardWidth : firstCardWidth;
+            });
+        });
+
+        arrow.forEach(btn => {
+            btn.addEventListener("click", () => {
+                slider.scrollLeft += btn.id === "A_left_button" ? -firstCardWidth : firstCardWidth;
+            });
+        });
+    </script>
+    <script>
+        let list = document.querySelector('.banner .list');
+        let items = document.querySelectorAll('.banner .list .item');
+        let dots = document.querySelectorAll('.dots li');
+        let prev = document.getElementById('prev');
+        let next = document.getElementById('next');
+        let photo = document.querySelectorAll('.banner .list .item img');
+        let buttons = document.querySelector('.buttons');
+        let baner = document.querySelector('.banner');
+
+        let active = 0;
+        let itemsLength = items.length - 1;
+
+        prev.onclick = function(){
+            if(active - 1 < 0){
+                active = itemsLength;
+            }
+            else{
+                active -=1;
+            }
+            reloadSlider();
+        }
+        next.onclick = function(){
+            if(active + 1 > itemsLength){
+                active = 0;
+            }
+            else{
+                active += 1;
+            }
+            reloadSlider();
+        }
+
+        let refreshSlider = setInterval(() => {next.click()}, 3000);
+        function reloadSlider(){
+            let checkLeft = items[active].offsetLeft;
+            list.style.left = -checkLeft  + "px";
+
+            let lastActive = document.querySelector('.dots li.active');
+            lastActive.classList.replace('active', 'noactive');
+            dots[active].classList.replace('noactive', 'active');
+            clearInterval(refreshSlider);
+            refreshSlider = setInterval(() => {next.click()}, 3000);
+
+        }
+
+        baner.addEventListener('mouseover', () => {
+            photo[active].style.width = 1020 + "px";
+        });
+
+        baner.addEventListener('mouseout', () => {
+            photo[active].style.width = 1000 + "px";
+        });
+
+        buttons.addEventListener('mouseover', () => {
+            photo[active].style.width = 1020 + "px";
+        });
+
+        dots.forEach((li, key) => {
+            li.addEventListener('click', function(){
+                active = key;
+                reloadSlider();
+            })
+        });
+    </script>
+    <script>
+        let apple = document.getElementById('nav_apple');
+        let apple_button = document.querySelector('.nav_apple_button');
+        let samsung = document.getElementById('nav_samsung');
+        let samsung_button = document.querySelector('.nav_samsung_button');
+        let phones = document.getElementById('nav_phone');
+        let phone_button = document.querySelector('.nav_phone_button');
+        let laptops = document.getElementById('nav_laptop');
+        let laptops_button = document.querySelector('.nav_laptop_button');
+        let tablets = document.getElementById('nav_tablet');
+        let tablets_button = document.querySelector('.nav_tablet_button');
+        let headphones = document.getElementById('nav_headphones');
+        let headphones_button = document.querySelector('.nav_headphones_button');
+        let watches = document.getElementById('nav_watch');
+        let watches_button = document.querySelector('.nav_watch_button');
+        let accessiories = document.getElementById('nav_accessories');
+        let accessiories_button = document.querySelector('.nav_accessories_button');
+
+        apple.addEventListener('mouseover', () => {
+            apple_button.style.background = "white";
+            apple_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        apple.addEventListener('mouseout', () => {
+            apple_button.style.background = "none";
+            apple_button.style.color = "rgb(125, 125, 125)";
+        });
+
+        samsung.addEventListener('mouseover', () => {
+            samsung_button.style.background = "white";
+            samsung_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        samsung.addEventListener('mouseout', () => {
+            samsung_button.style.background = "none";
+            samsung_button.style.color = "rgb(125, 125, 125)";
+        });
+
+        phones.addEventListener('mouseover', () => {
+            phone_button.style.background = "white";
+            phone_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        phones.addEventListener('mouseout', () => {
+            phone_button.style.background = "none";
+            phone_button.style.color = "rgb(125, 125, 125)";
+        });
+
+        laptops.addEventListener('mouseover', () => {
+            laptops_button.style.background = "white";
+            laptops_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        laptops.addEventListener('mouseout', () => {
+            laptops_button.style.background = "none";
+            laptops_button.style.color = "rgb(125, 125, 125)";
+        });
+
+        tablets.addEventListener('mouseover', () => {
+            tablets_button.style.background = "white";
+            tablets_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        tablets.addEventListener('mouseout', () => {
+            tablets_button.style.background = "none";
+            tablets_button.style.color = "rgb(125, 125, 125)";
+        });
+
+        headphones.addEventListener('mouseover', () => {
+            headphones_button.style.background = "white";
+            headphones_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        headphones.addEventListener('mouseout', () => {
+            headphones_button.style.background = "none";
+            headphones_button.style.color = "rgb(125, 125, 125)";
+        });
+
+        watches.addEventListener('mouseover', () => {
+            watches_button.style.background = "white";
+            watches_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        watches.addEventListener('mouseout', () => {
+            watches_button.style.background = "none";
+            watches_button.style.color = "rgb(125, 125, 125)";
+        });
+
+        accessiories.addEventListener('mouseover', () => {
+            accessiories_button.style.background = "white";
+            accessiories_button.style.color = "rgb(70, 70, 70)";
+        });
+
+        accessiories.addEventListener('mouseout', () => {
+            accessiories_button.style.background = "none";
+            accessiories_button.style.color = "rgb(125, 125, 125)";
+        });
+    </script>
+    <script>
+        // Save scroll position before reloading
+        window.onbeforeunload = function() {
+            localStorage.setItem('scrollPosition', window.scrollY);
+        };
+
+        // Restore scroll position after reloading
+        window.onload = function() {
+            var scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition !== null) {
+                window.scrollTo(0, scrollPosition);
+                localStorage.removeItem('scrollPosition'); // Optional: remove the stored scroll position
+            }
+        };
+    </script>
+</body>
+</html>
