@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -23,10 +24,9 @@ public class SecurityConfiguration {
 
 
     @Bean
-    UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
-
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -44,11 +44,9 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authenticationProvider(authenticationProvider());
-
         http.authorizeHttpRequests(auth->
                         auth
-                                .requestMatchers("/admin/additem").authenticated()
+                                .requestMatchers("/admin/additem").hasRole("ADMIN")
                                 .requestMatchers("/acountpage").authenticated()
                                 .anyRequest().permitAll()
                 )
@@ -65,5 +63,6 @@ public class SecurityConfiguration {
         return http.build();
 
     }
+
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Acount Page</title>
@@ -8,5 +8,8 @@
 </head>
 <body>
     <h3>Here will be your acount profile</h3>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/admin/additem}">Add item to shop</a>
+    </div>
 </body>
 </html>

@@ -264,6 +264,28 @@ li:hover .mega_box{
     text-align: center;
 }
 
+.delete_icon {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 20px;
+    color: red;
+}
+
+.edit_icon {
+    position: absolute;
+    left: 20px;
+    top: 14px;
+    font-size: 15px;
+    color: black;
+    background-color: lightgray;
+    height: 18px;
+    width: 20px;
+    text-align: center;
+    padding-top: 2px;
+}
+
+
 .card_image {
     position: relative;
     margin: auto;

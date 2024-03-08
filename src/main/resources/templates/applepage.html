@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -22,7 +22,13 @@
 
                 <div class="card" th:each="item : ${items}">
                     <div class="card_content">
-                        <p class="product" th:text="${item.fullName}">Samsung Galaxy S23 Ultra</p>
+                        <a class="edit_icon">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <p class="product" th:text="${item.fullName}"></p>
+                        <a th:href="@{'/delete/' +${item.id}}" class="delete_icon">
+                            <i class="bi bi-x-square-fill"></i>
+                        </a>
                         <div class="card_image">
                             <img class="photo" th:src="@{${item.image}}">
                         </div>
@@ -32,6 +38,25 @@
                         </div>
                     </div>
                 </div>
+<!--                <div class="card">-->
+<!--                    <div class="card_content">-->
+<!--                        <a th:href="" class="edit_icon">-->
+<!--                            <i class="bi bi-pencil"></i>-->
+<!--                        </a>-->
+<!--                        <p class="product">iPhone 15 Pro</p>-->
+<!--                        <a th:href="@{'/delete/' + ${item.id}}" class="delete_icon">-->
+<!--                            <i class="bi bi-x-square-fill"></i>-->
+<!--                        </a>-->
+<!--                        <div class="card_image">-->
+<!--                            <img src="https://prod-api.mediaexpert.pl/api/images/gallery_500_500/thumbnails/images/58/5860404/Smartfon-APPLE-iPhone-15-Pro-Tytan-blekitny-1.jpg">-->
+<!--                        </div>-->
+<!--                        <div class="bottom">-->
+<!--                            <p class="price">From <span>500</span>zł</p>-->
+<!--                            <a th:href="@{'/add/' + 14}" class="buy"><p>Buy</p></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
                 <!--<div class="card">
                     <div class="card_content">
                         <p class="product">Samsung Galaxy S23 Ultra</p>
