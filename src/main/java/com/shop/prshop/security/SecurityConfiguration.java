@@ -32,6 +32,7 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -46,8 +47,8 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests(auth->
                         auth
-                                .requestMatchers("/admin/additem").hasRole("ADMIN")
-                                .requestMatchers("/acountpage").authenticated()
+                                .requestMatchers("/admin/additem").authenticated()
+                                .requestMatchers("/acountPage").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .formLogin(login ->

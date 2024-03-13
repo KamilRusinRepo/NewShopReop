@@ -24,6 +24,9 @@ public class Order {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name="email")
+    private String email;
+
     @Column(name = "city")
     private String city;
 
@@ -48,10 +51,11 @@ public class Order {
     public Order() {
 
     }
-    public Order(Long orderId, String firstName, String lastName, String city, String street, String homeNumber, String postCode, String phoneNumber, LocalDateTime created, List<OrderItem> orderItems) {
+    public Order(Long orderId, String firstName, String lastName, String email, String city, String street, String homeNumber, String postCode, String phoneNumber, LocalDateTime created, List<OrderItem> orderItems) {
         this.orderId = orderId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.city = city;
         this.street = street;
         this.homeNumber = homeNumber;
@@ -73,6 +77,9 @@ public class Order {
         return lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
     public String getCity() {
         return city;
     }

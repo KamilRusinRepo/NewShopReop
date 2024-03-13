@@ -6,11 +6,14 @@ import com.shop.prshop.repository.ItemRepository;
 import com.shop.prshop.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +22,14 @@ import java.util.Optional;
 @Controller
 public class HomeController {
 
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     private final CartService cartService;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public HomeController(CartService cartService)
-    {
+    public HomeController(CartService cartService, ItemRepository itemRepository) {
         this.cartService = cartService;
+        this.itemRepository = itemRepository;
     }
 
     @GetMapping("/")
@@ -47,10 +52,62 @@ public class HomeController {
         return "applepage";
     }
 
-    @GetMapping("/acountpage")
+    @GetMapping("/acountPage")
     public String showAcountPage() {
         return "acountpage";
     }
 
+    @GetMapping("/productPage")
+    public String showProductPage() {
+        return "productPage";
+    }
 
+    @GetMapping("/samsungPage")
+    public String showSamsungPage(Model model) {
+        List<Item> items = cartService.getAllItems();
+        model.addAttribute("items", items);
+        return "samsungPage";
+    }
+
+    @GetMapping("/phonesPage")
+    public String showPhonesPage(Model model) {
+        List<Item> items = cartService.getAllItems();
+        model.addAttribute("items", items);
+        return "phonesPage";
+    }
+
+    @GetMapping("/laptopsPage")
+    public String showLaptopsPage(Model model) {
+        List<Item> items = cartService.getAllItems();
+        model.addAttribute("items", items);
+        return "laptopsPage_style";
+    }
+
+    @GetMapping("/tabletsPage")
+    public String showTabletsPage(Model model) {
+        List<Item> items = cartService.getAllItems();
+        model.addAttribute("items", items);
+        return "tabletsPage";
+    }
+
+    @GetMapping("/headphonesPage")
+    public String showHeadphonesPage(Model model) {
+        List<Item> items = cartService.getAllItems();
+        model.addAttribute("items", items);
+        return "headphonesPage";
+    }
+
+    @GetMapping("/watchesPage")
+    public String showWatchesPage(Model model) {
+        List<Item> items = cartService.getAllItems();
+        model.addAttribute("items", items);
+        return "watchesPage";
+    }
+
+    @GetMapping("/accessoriesPage")
+    public String showAccessoriesPage(Model model) {
+        List<Item> items = cartService.getAllItems();
+        model.addAttribute("items", items);
+        return "accessoriesPage";
+    }
 }

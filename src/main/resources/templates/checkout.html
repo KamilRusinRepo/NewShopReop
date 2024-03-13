@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Checkout page</title>
-    <link rel="stylesheet" type="text/css" href="/css/checkout_style.css">
+    <link rel="stylesheet" type="text/css" href="../css/checkout_style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -22,39 +22,63 @@
             </div>
         </div>
         <div class="order_form">
-            <form th:action="@{/cart/saveorder}" method="POST">
+            <form th:action="@{/cart/saveorder}" th:object="${orderDto}" method="POST">
                 <div class="name">
                     <div>
-                        <label>First name</label><br>
-                        <input type="text" name="firstName" required><br>
+                        <label for="firstName" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+                        <div>
+                            <input id="firstName" name="firstName" type="text" th:field="*{firstName}" required class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
                     </div>
                     <div>
-                        <label>Last name</label><br>
-                        <input type="text" name="lastName" required><br>
-                    </div>
-                </div>
-                <div class="city">
-                    <div>
-                        <label>City</label><br>
-                        <input type="text" name="city" required><br>
-                    </div>
-                    <div>
-                        <label>Street</label><br>
-                        <input type="text" name="street" required><br>
+                        <label for="lastName" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
+                        <div>
+                            <input id="lastName" name="lastName" type="text" th:field="*{lastName}" required class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
                     </div>
                 </div>
                 <div class="home">
                     <div>
-                        <label>Home number</label><br>
-                        <input type="text" name="homeNumber" required><br>
+                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                        <div>
+                            <input id="email" name="email" type="email" th:field="*{email}" required class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
                     </div>
                     <div>
-                        <label>Code</label><br>
-                        <input type="text" name="postCode" required><br>
+                        <label for="phoneNumber" class="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
+                        <div>
+                            <input id="phoneNumber" name="phoneNumber" type="text" th:field="*{phoneNumber}" required  maxlength="9" class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
                     </div>
                 </div>
-                <label>Phone number</label><br>
-                <input class="phone_number" type="number" name="phoneNumber" required>
+                <div class="city">
+                    <div>
+                        <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                        <div>
+                            <input id="city" name="city" type="text" th:field="*{city}" required class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="street" class="block text-sm font-medium leading-6 text-gray-900">Street</label>
+                        <div>
+                            <input id="street" name="street" type="text" th:field="*{street}" required class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                </div>
+                <div class="home">
+                    <div>
+                        <label for="homeNumber" class="block text-sm font-medium leading-6 text-gray-900">Home Number</label>
+                        <div>
+                            <input id="homeNumber" name="homeNumber" type="text" th:field="*{homeNumber}" required class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="code" class="block text-sm font-medium leading-6 text-gray-900">Code</label>
+                        <div>
+                            <input id="code" name="code" type="text" th:field="*{postCode}" required maxlength="6" class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-800 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                </div>
                 <button type="submit" class="order">Order</button>
             </form>
         </div>

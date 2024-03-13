@@ -33,6 +33,12 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name="verification_code")
+    private String verificationCode;
+
+    @Column(name="verified")
+    private boolean verified;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -44,12 +50,14 @@ public class User {
 
     public User() {}
 
-    public User(String firstName, String lastName, String email, String password, List<Role> roles) {
+    public User(String firstName, String lastName, String email, String password, List<Role> roles, String verificationCode, boolean verified) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.verificationCode = verificationCode;
+        this.verified = verified;
     }
     public String getFirstName() {
         return firstName;
@@ -93,6 +101,25 @@ public class User {
 
     public List<Role> getRoles() {
         return roles;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public boolean getVerified() {
+        return verified;
+    }
+    public boolean isEnabled() {
+        return verified;
     }
 
 }

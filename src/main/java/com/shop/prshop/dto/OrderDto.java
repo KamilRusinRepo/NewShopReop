@@ -1,8 +1,17 @@
 package com.shop.prshop.dto;
 
+import com.shop.prshop.model.order.OrderItem;
+import lombok.Builder;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+
+@Builder
 public class OrderDto {
     String firstName;
     String lastName;
+    String email;
     String city;
     String street;
     String homeNumber;
@@ -11,6 +20,17 @@ public class OrderDto {
 
     public OrderDto() {
 
+    }
+
+    public OrderDto(String firstName, String lastName, String email, String city, String street, String homeNumber, String postCode, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.city = city;
+        this.street = street;
+        this.homeNumber = homeNumber;
+        this.postCode = postCode;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {
@@ -27,6 +47,14 @@ public class OrderDto {
 
     public void setLastName(String sureName) {
         this.lastName = sureName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getCity() {

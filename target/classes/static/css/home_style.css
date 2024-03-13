@@ -37,14 +37,17 @@ body {
 
 .nav_links {
     display: inline-flex;
+    padding-left: 10px;
 }
 
+.logo {
+    width: 35px;
+}
 .logo a {
     color: rgb(70, 70, 70);
     font-size: 25px;
     font-weight: bold;
     text-decoration: none;
-    margin-right: -20px;
     transition: 0.3s;
     cursor: pointer;
 }
@@ -101,7 +104,7 @@ body {
     position: absolute;
     top: 40px;
     background:white;
-    margin-left: -15px; 
+    margin-left: -15px;
     border-radius: 5px;
     border: 2px solid rgb(128, 128, 128);
 }
@@ -111,7 +114,7 @@ body {
     width: 60px;
     height: 20px;
 }
- 
+
 .class-menu ul li{
     text-align: center;
     width: 70px;
@@ -163,9 +166,9 @@ body {
 }
 
 #total {
-    position: absolute;
-    right: 240px;
-    top: 30px;
+    position: relative;
+    right: -10px;
+    top: -30px;
     width: max-content;
     background-color: black;
     color: white;
@@ -220,7 +223,6 @@ body {
 .mega_links li {
     padding: 0 0 0 0;
     position: relative;
-    transition: 0.5s;
 }
 
 .mega_links li:after{
@@ -252,7 +254,7 @@ body {
     left: 0;
     opacity: 0;
     visibility: hidden;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .content {
@@ -274,6 +276,22 @@ li:hover .mega_box{
     opacity: 1;
 }
 
+.bi bi-bag {
+    width: 50px;
+    height: 50px;
+}
+
+.form_input {
+    margin: auto;
+    position: relative;
+    top: -15px;
+    margin-top: 0;
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+}
 
 /*banner*/
 .banner {
@@ -386,6 +404,11 @@ li:hover .mega_box{
     margin-bottom: 0;
     font-size: 40px;
     cursor: pointer;
+}
+
+.Apple a {
+    text-decoration: none;
+    color: rgb(29, 29, 31);
 }
 
 .Apple_slider {
@@ -536,6 +559,11 @@ li:hover .mega_box{
     cursor: pointer;
 }
 
+.Samsung a {
+    text-decoration: none;
+    color: rgb(29, 29, 31);
+}
+
 .Samsung_slider {
     max-width: 1055px;
     width: 100%;
@@ -637,21 +665,4 @@ li:hover .mega_box{
     width: 100%;
     display: flex;
     justify-content: space-around;
-}
-
-.bi bi-bag {
-    width: 50px;
-    height: 50px;
-}
-
-.form_input {
-    margin: auto;
-    position: relative;
-    top: -15px;
-    margin-top: 0;
-    background: none;
-    border: none;
-    font-size: 15px;
-    font-weight: 300;
-    cursor: pointer;
 }

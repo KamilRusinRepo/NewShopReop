@@ -31,17 +31,25 @@ body {
     width: 100%;
 }
 
-.nav_links {
-    display: inline-flex;
+.container a {
+    cursor: pointer;
 }
 
+.nav_links {
+    display: inline-flex;
+    padding-left: 10px;
+}
+
+.logo {
+    width: 35px;
+}
 .logo a {
     color: rgb(70, 70, 70);
     font-size: 25px;
     font-weight: bold;
     text-decoration: none;
-    margin-right: -20px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .logo a:hover {
@@ -67,10 +75,79 @@ body {
     color: rgb(70, 70, 70);
 }
 
+.bi-person {
+    font-size: 34px;
+    cursor: pointer;
+    margin-right: 2px;
+    color: rgb(70, 70, 70);
+    transition: 0.3s;
+    font-weight:lighter;
+}
+
+.classa {
+    width: 40px;
+    height: 40px;
+
+}
+
+.classa ul li{
+    list-style: none;
+    position: relative;
+    left: -40px;
+    top: -15px;
+    width: 40px;
+    height: 40px;
+}
+
+.classa ul li:hover .class-menu {
+    display: block;
+    position: absolute;
+    top: 40px;
+    background:white;
+    margin-left: -15px;
+    border-radius: 5px;
+    border: 2px solid rgb(128, 128, 128);
+}
+
+.class-menu {
+    display: none;
+    width: 60px;
+    height: 20px;
+}
+
+.class-menu ul li{
+    text-align: center;
+    width: 70px;
+    height: 20px;
+    position: relative;
+    left:-45px;
+}
+
+.class-menu ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+.bi-person:hover {
+    font-size: 38px;
+    color: black;
+}
+
 .cart_quantity {
     width: 45px;
     height: 45px;
     cursor: pointer;
+}
+
+.cart-icon{
+    font-size: 28px;
+    color: rgb(70, 70, 70);
+    transition: 0.3s;
+}
+
+.cart-icon:hover {
+    font-size: 30px;
+    color: black;
 }
 
 #koszyk {
@@ -89,14 +166,14 @@ body {
 }
 
 #total {
-    position: absolute;
-    right: 230px;
-    top: 30px;
+    position: relative;
+    right: -10px;
+    top: -30px;
     width: max-content;
     background-color: black;
     color: white;
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
     border-radius: 50%;
     display: flex;
     font-size: 10px;
@@ -109,6 +186,7 @@ body {
     margin-bottom: -20px;
     margin-left: 5px;
     display: inline-flex;
+    margin-top: -10px;
 }
 .photos img {
     width: 30px;
@@ -145,7 +223,6 @@ body {
 .mega_links li {
     padding: 0 0 0 0;
     position: relative;
-    transition: 0.5s;
 }
 
 .mega_links li:after{
@@ -177,7 +254,7 @@ body {
     left: 0;
     opacity: 0;
     visibility: hidden;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .content {
@@ -197,6 +274,23 @@ body {
 li:hover .mega_box{
     visibility: visible;
     opacity: 1;
+}
+
+.bi bi-bag {
+    width: 50px;
+    height: 50px;
+}
+
+.form_input {
+    margin: auto;
+    position: relative;
+    top: -15px;
+    margin-top: 0;
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
 }
 
 /* main content */

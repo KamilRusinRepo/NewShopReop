@@ -5,12 +5,21 @@ import com.shop.prshop.CartItem;
 import com.shop.prshop.dto.OrderDto;
 import com.shop.prshop.model.order.Order;
 import com.shop.prshop.model.order.OrderItem;
+import com.shop.prshop.model.user.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderMapper {
+
+    public static OrderDto mapToOrderDto(User user) {
+        return OrderDto.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .build();
+    }
     public static Order mapToOrder(OrderDto orderDto) {
         return Order.builder()
                 .firstName(orderDto.getFirstName())

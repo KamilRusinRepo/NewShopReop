@@ -11,8 +11,6 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long orderItemId;
 
-    //private Long orderDetailId;
-
     @Column(name = "item_id")
     private Long itemId;
 
@@ -41,13 +39,6 @@ public class OrderItem {
         this.orderItemId = orderItemId;
     }
 
-//    public Long getOrderDetailId() {
-//        return orderDetailId;
-//    }
-//
-//    public void setOrderDetailId(Long orderDetailId) {
-//        this.orderDetailId = orderDetailId;
-//    }
 
     public Long getItemId() {
         return itemId;
