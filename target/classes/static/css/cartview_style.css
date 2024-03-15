@@ -310,9 +310,18 @@ li:hover .mega_box{
     box-shadow: 2px 2px 20px rgb(210, 210, 210);
 }
 
-.cart_items img {
-    width: 175px;
+.img_container {
     height: 200px;
+    width: 200px;
+}
+
+.cart_items img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .item {

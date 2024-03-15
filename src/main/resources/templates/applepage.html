@@ -12,9 +12,9 @@
 
     <!-- main content -->
     <div class="main_content">
-<!--        <div class="sort_menu">-->
+        <div class="sort_menu" th:unless="${#lists.isEmpty(items)}">
 
-<!--        </div>-->
+        </div>
 
         <div th:if="${#lists.isEmpty(items)}" class="itemNotFound">
             <p>No item of this category found<p>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="bottom">
                             <p class="price">From <span th:text="${item.price}"></span>zł</p>
-                            <a th:href="@{'/add/' + ${item.id}}" class="buy"><p>Buy</p></a>
+                            <a th:href="@{'/add/' + ${item.id}(path='/applepage')}" class="buy"><p>Buy</p></a>
                         </div>
                     </div>
                 </div>

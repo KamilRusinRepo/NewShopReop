@@ -47,7 +47,7 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests(auth->
                         auth
-                                .requestMatchers("/admin/additem").authenticated()
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/acountPage").authenticated()
                                 .anyRequest().permitAll()
                 )

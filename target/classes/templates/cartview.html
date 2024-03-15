@@ -16,7 +16,9 @@
 
     <div th:if="${@cart.counter}" class="cart_items">
         <div class="item" th:each="cartItem : ${@cart.cartItems}">
-            <img th:src="@{${cartItem.item.image}}">
+            <div class="img_container">
+                <img th:src="@{${cartItem.item.image}}">
+            </div>
             <a href="#"><p class="item_name" th:text="${cartItem.item.fullName}"></p></a>
             <div class="counter">
                 <a th:href="@{'/cart/decrease/' + ${cartItem.item.id}}"><button class="btn">-</button></a>

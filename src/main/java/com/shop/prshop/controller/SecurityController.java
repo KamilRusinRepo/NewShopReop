@@ -1,13 +1,16 @@
 package com.shop.prshop.controller;
 
+import com.shop.prshop.RandomString;
 import com.shop.prshop.model.user.User;
 import com.shop.prshop.repository.UserRepository;
 import com.shop.prshop.service.UserServiceImpl;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -48,7 +52,7 @@ public class SecurityController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(User user, Model model, HttpServletRequest request) {
+    public String saveUser(User user, Model model, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
         String email = user.getEmail();
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -98,17 +102,71 @@ public class SecurityController {
 
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code) {
-//        User user = userRepository.findByVerificationCode(code);
-//
-//        if (user == null || user.isEnabled()) {
-//            return "home";
-//        } else {
-//            user.setVerificationCode(null);
-//            user.setEnabled(true);
-//            userRepository.save(user);
-//
-//            return "applepage";
-//        }
-        return null;
+        Optional<User> optionalUser = userRepository.findByVerificationCode(code);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if(!user.isEnabled()) {
+                user.setVerificationCode(null);
+                user.setVerified(true);
+                userRepository.save(user);
+            }
+            return "verificationSuccess";
+        }
+        else {
+            logger.info("user with code: " + code + "not found");
+            return "verificationFail";
+        }
+
+    }
+
+    @GetMapping("/showForgotPasswordForm")
+    public String showForgotPasswordForm() {
+        return "forgotPasswordForm";
+    }
+
+    @PostMapping("/sendResetPasswordLink")
+    public String sendResetPasswordLink(HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException {
+        String email = request.getParameter("email");
+        try {
+            userService.updateResetPassword(email,request.getRequestURL().toString().replace(request.getServletPath(), ""));
+            model.addAttribute("success", true);
+        }
+        catch (UnsupportedEncodingException | MessagingException e) {
+            model.addAttribute("error", "Error while sending email");
+        }
+        return "forgotPasswordForm";
+    }
+
+    @GetMapping("/showResetPasswordForm")
+    public String showResetPasswordForm(@Param("code") String code, Model model) {
+        Optional<User> optionalUser = userRepository.findByVerificationCode(code);
+        model.addAttribute("code", code);
+        if (optionalUser.isPresent() ){
+            return "resetPasswordForm";
+        }
+        return "invalidToken";
+    }
+
+    @PostMapping("saveResetPassword")
+    public String saveResetPassword(HttpServletRequest request, Model model) {
+        String code = request.getParameter("code");
+        String password = request.getParameter("password");
+        String passwordRepeat = request.getParameter("passwordRepeat");
+        Optional<User> optionalUser = userRepository.findByVerificationCode(code);
+        if(optionalUser.isPresent()) {
+            if (password.equals(passwordRepeat)) {
+                User user = optionalUser.get();
+                user.setVerificationCode(null);
+                user.setPassword(passwordEncoder.encode(password));
+                userRepository.save(user);
+                model.addAttribute("success", true);
+            }
+        }
+        else {
+            model.addAttribute("error", true);
+        }
+
+        return "resetPasswordForm";
     }
 }

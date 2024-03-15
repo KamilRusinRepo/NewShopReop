@@ -13,9 +13,6 @@
 
     <!-- main content -->
     <div class="main_content">
-        <!--        <div class="sort_menu">-->
-
-        <!--        </div>-->
 
         <div th:if="${#lists.isEmpty(items)}" class="itemNotFound">
             <p>No item of this category found<p>
@@ -27,11 +24,11 @@
 
                 <div class="card" th:each="item : ${items}">
                     <div class="card_content">
-                        <a th:href="@{'/admin/showUpdateForm/' + ${item.id}(path='/applepage')}" class="edit_icon" sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{'/admin/showUpdateForm/' + ${item.id}(path='/samsungPage')}" class="edit_icon" sec:authorize="hasRole('ADMIN')">
                             <i class="bi bi-pencil"></i>
                         </a>
                         <p class="product" th:text="${item.fullName}"></p>
-                        <a th:href="@{'/admin/delete/' + ${item.id}(path='/applepage')}" class="delete_icon" onclick="return confirm('Are you sure you want to delete this item?')" sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{'/admin/delete/' + ${item.id}(path='/samsungPage')}" class="delete_icon" onclick="return confirm('Are you sure you want to delete this item?')" sec:authorize="hasRole('ADMIN')">
                             <i class="bi bi-x-square-fill"></i>
                         </a>
                         <div class="card_image">
@@ -39,7 +36,7 @@
                         </div>
                         <div class="bottom">
                             <p class="price">From <span th:text="${item.price}"></span>zł</p>
-                            <a th:href="@{'/add/' + ${item.id}}" class="buy"><p>Buy</p></a>
+                            <a th:href="@{'/add/' + ${item.id}(path='/samsungPage')}" class="buy"><p>Buy</p></a>
                         </div>
                     </div>
                 </div>

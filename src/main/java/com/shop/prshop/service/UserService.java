@@ -7,7 +7,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface UserService {
-    void saveUser(User user, String siteUrl);
+    void saveUser(User user, String siteUrl) throws MessagingException, UnsupportedEncodingException;
+
     List<User> findAllUsers();
-    void setVerificationEmail(User user, String siteUrl) throws MessagingException, UnsupportedEncodingException;
+
+    void sendVerificationEmail(User user, String siteUrl) throws MessagingException, UnsupportedEncodingException;
+    void sendResetPasswordEmail(User user, String siteUrl) throws MessagingException, UnsupportedEncodingException;
+    void updateResetPassword(String email, String siteUrl) throws MessagingException, UnsupportedEncodingException;
 }

@@ -5,10 +5,13 @@ import com.shop.prshop.model.Item;
 import com.shop.prshop.model.order.Order;
 import com.shop.prshop.model.user.User;
 import com.shop.prshop.repository.ItemRepository;
+import com.shop.prshop.repository.OrderItemRepository;
 import com.shop.prshop.repository.OrderRepository;
 import com.shop.prshop.repository.UserRepository;
+import com.shop.prshop.service.AdminService;
 import com.shop.prshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,11 +31,15 @@ public class AdminController {
     public final ItemRepository itemRepository;
     public final OrderRepository orderRepository;
     public final UserRepository userRepository;
+    public final OrderItemRepository orderItemRepository;
+    public final AdminService adminService;
     @Autowired
-    public AdminController(ItemRepository itemRepository, OrderRepository orderRepository, UserRepository userRepository) {
+    public AdminController(ItemRepository itemRepository, OrderRepository orderRepository, UserRepository userRepository, OrderItemRepository orderItemRepository, AdminService adminService) {
         this.itemRepository = itemRepository;
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
+        this.orderItemRepository = orderItemRepository;
+        this.adminService = adminService;
     }
 
     @GetMapping("/additem")
@@ -44,22 +51,14 @@ public class AdminController {
 
     @PostMapping("/save")
     private String addItem(@ModelAttribute("item") Item item) {
-        itemRepository.save(item);
+        adminService.saveItem(item);
+
         return "redirect:/acountPage";
     }
 
     @GetMapping("/delete/{itemId}")
     public String deleteItem(@PathVariable("itemId") Long id, @RequestParam String path) {
-        logger.info("Method deleteItem invoked");
-        Optional<Item> optionalItem = itemRepository.findById(id);
-        if(optionalItem.isPresent()) {
-            Item itemToDel = optionalItem.get();
-            itemRepository.delete(itemToDel);
-        }
-        else {
-            logger.info("User with id: " + id + "not found!");
-        }
-
+        adminService.deleteItem(id);
 
         return "redirect:" + path;
     }
@@ -101,5 +100,27 @@ public class AdminController {
         return "usersList";
     }
 
+    @GetMapping("/deleteUser/{userId}")
+    public String deleteUser(@PathVariable("userId") int id, @RequestParam String path) {
+        logger.info("Method deleteUser invoked");
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            userRepository.delete(user);
+            logger.info("user with id: " + id + "deleted");
+        }
+        else {
+            logger.info("User with id: " + id + "not found!");
+        }
+
+
+        return "redirect:" + path;
+    }
+
+    @GetMapping("/showDetails/{itemId}")
+    public String showDetails(@PathVariable("itemId") Long id, Model model) {
+        model.addAttribute("orderItems", orderItemRepository.findByOrderId(id));
+        return "orderDetails";
+    }
 
 }

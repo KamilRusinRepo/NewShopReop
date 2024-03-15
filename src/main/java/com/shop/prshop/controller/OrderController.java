@@ -3,7 +3,11 @@ package com.shop.prshop.controller;
 import com.shop.prshop.Cart;
 import com.shop.prshop.dto.OrderDto;
 import com.shop.prshop.mapper.OrderMapper;
+import com.shop.prshop.model.order.Order;
+import com.shop.prshop.model.order.OrderItem;
 import com.shop.prshop.model.user.User;
+import com.shop.prshop.repository.OrderItemRepository;
+import com.shop.prshop.repository.OrderRepository;
 import com.shop.prshop.repository.UserRepository;
 import com.shop.prshop.service.CartService;
 import com.shop.prshop.service.OrderService;
@@ -17,6 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -26,13 +32,17 @@ public class OrderController {
     private final CartService cartService;
     private final OrderService orderService;
     private final UserRepository userRepository;
+    private final OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
-    public OrderController(CartService cartService, OrderService orderService, UserRepository userRepository) {
+    public OrderController(CartService cartService, OrderService orderService, UserRepository userRepository, OrderRepository orderRepository, OrderItemRepository orderItemRepository) {
         this.cartService = cartService;
         this.orderService = orderService;
         this.userRepository = userRepository;
+        this.orderRepository = orderRepository;
+        this.orderItemRepository = orderItemRepository;
     }
 
     @GetMapping("/")
@@ -81,5 +91,17 @@ public class OrderController {
     public String saveOrder(OrderDto orderDto) {
         orderService.saveOrder(orderDto);
         return "redirect:/";
+    }
+
+    @GetMapping("/getUserOrders")
+    public String showUserOrders(Principal principal, Model model) {
+        String email = principal.getName();
+        List<Order> orders = orderRepository.findOrderByEmail(email);
+        List<OrderItem> orderItemsList = new ArrayList<>();
+        for(Order newOrder : orders) {
+            orderItemsList.addAll(orderItemRepository.findByOrderId(newOrder.getOrderId()));
+        }
+        model.addAttribute("orders", orderItemsList);
+        return "userOrders";
     }
 }

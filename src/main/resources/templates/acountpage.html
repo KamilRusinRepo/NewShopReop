@@ -18,7 +18,7 @@
     <div class="buttons">
         <h2 class="buttons_header">Options:</h2>
         <a th:href="@{/showChangePasswordPage}">Change Password</a>
-        <a>View Your Orders</a>
+        <a th:href="@{/cart/getUserOrders}">View Your Orders</a>
         <div sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/admin/additem}">Add Item</a>
             <a th:href="@{/admin/showOrders}">Show Orders</a>

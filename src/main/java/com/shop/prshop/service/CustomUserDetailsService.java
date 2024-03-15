@@ -1,5 +1,6 @@
 package com.shop.prshop.service;
 
+import com.shop.prshop.model.user.CustomUserDetails;
 import com.shop.prshop.model.user.Role;
 import com.shop.prshop.model.user.User;
 import com.shop.prshop.repository.UserRepository;
@@ -29,19 +30,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                    user.getPassword(),
-                    mapRolesToAuthorities(user.getRoles()));
+
+            return new CustomUserDetails(user);
         }else{
             throw new UsernameNotFoundException("Invalid username or password.");
         }
     }
-
-    private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Collection <Role> roles) {
-        Collection < ? extends GrantedAuthority> mapRoles = roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-        return mapRoles;
-    }
+//
+//    private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Collection <Role> roles) {
+//        Collection < ? extends GrantedAuthority> mapRoles = roles.stream()
+//                .map(role -> new SimpleGrantedAuthority(role.getName()))
+//                .collect(Collectors.toList());
+//        return mapRoles;
+//    }
 }
 

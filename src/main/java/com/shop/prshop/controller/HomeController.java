@@ -6,6 +6,7 @@ import com.shop.prshop.repository.ItemRepository;
 import com.shop.prshop.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+import org.hibernate.query.spi.Limit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,22 +35,24 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model){
-        model.addAttribute("items", cartService.getAllItems());
+        model.addAttribute("apple", itemRepository.findTop7ByMake("Apple").stream().limit(6).toList());
+        model.addAttribute("samsung", itemRepository.findTop7ByMake("Samsung").stream().limit(6).toList());
         return "home";
     }
 
     @GetMapping("/applepage")
     public String applePage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByMake("Apple");
         model.addAttribute("items", items);
         return "applepage";
     }
 
     @GetMapping("/add/{itemId}")
-    public String addItem(@PathVariable("itemId") Long itemId, Model model) {
+    public String addItem(@PathVariable("itemId") Long itemId, Model model, @RequestParam String path) {
         cartService.addItemToCart(itemId);
         model.addAttribute("items", cartService.getAllItems());
-        return "applepage";
+
+        return "redirect:" + path;
     }
 
     @GetMapping("/acountPage")
@@ -64,49 +67,49 @@ public class HomeController {
 
     @GetMapping("/samsungPage")
     public String showSamsungPage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByMake("Samsung");
         model.addAttribute("items", items);
         return "samsungPage";
     }
 
     @GetMapping("/phonesPage")
     public String showPhonesPage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByCategory("Phone");
         model.addAttribute("items", items);
         return "phonesPage";
     }
 
     @GetMapping("/laptopsPage")
     public String showLaptopsPage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByCategory("Laptop");
         model.addAttribute("items", items);
         return "laptopsPage_style";
     }
 
     @GetMapping("/tabletsPage")
     public String showTabletsPage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByCategory("Tablet");
         model.addAttribute("items", items);
         return "tabletsPage";
     }
 
     @GetMapping("/headphonesPage")
     public String showHeadphonesPage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByCategory("Headphones");
         model.addAttribute("items", items);
         return "headphonesPage";
     }
 
     @GetMapping("/watchesPage")
     public String showWatchesPage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByCategory("Watch");
         model.addAttribute("items", items);
         return "watchesPage";
     }
 
     @GetMapping("/accessoriesPage")
     public String showAccessoriesPage(Model model) {
-        List<Item> items = cartService.getAllItems();
+        List<Item> items = itemRepository.findByCategory("Accessories");
         model.addAttribute("items", items);
         return "accessoriesPage";
     }

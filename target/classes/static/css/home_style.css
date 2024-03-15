@@ -421,13 +421,103 @@ li:hover .mega_box{
 .Apple_cards_frame {
     display: grid;
     grid-auto-flow: column;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 255px));
+    grid-gap: 10px;
+    grid-gap: 10px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
 }
-.Apple_card {
+
+.Apple_button{
+    height: 50px;
+    width: 50px;
+    border: none;
+    background-color: white;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    opacity: 40%;
+    transform: translateY(-50%);
+    transition: 0.5s;
+}
+
+#A_left_button {
+    left: -50px;
+}
+
+#A_right_button {
+    right: -50px;
+}
+
+/*Samsung slider*/
+.Samsung {
+    font-family: sans-serif;
+    color: rgb(29, 29, 31);
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.Samsung a {
+    text-decoration: none;
+    color: rgb(29, 29, 31);
+}
+
+.Samsung_slider {
+    max-width: 1055px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+
+.Samsung_cards_frame {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 255px));
+    grid-gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.Samsung_button{
+    height: 50px;
+    width: 50px;
+    border: none;
+    background-color: white;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    opacity: 40%;
+    transform: translateY(-50%);
+    transition: 0.5s;
+}
+
+#S_left_button {
+    left: -50px;
+}
+
+#S_right_button {
+    right: -50px;
+}
+
+.Samsung_button:hover {
+    opacity: 100%;
+}
+
+/* product card */
+.card {
     scroll-snap-align: start;
     position: relative;
     width: 250px;
@@ -446,6 +536,7 @@ li:hover .mega_box{
     border-radius: 20px;
     width: 100%;
 }
+
 .product {
     color: rgb(29, 29, 31);
     font-family: sans-serif;
@@ -457,19 +548,50 @@ li:hover .mega_box{
     text-align: center;
 }
 
+.delete_icon {
+    position: absolute;
+    right: 15px;
+    top: 48px;
+    font-size: 20px;
+    color: red;
+}
+
+.edit_icon {
+    position: absolute;
+    left: 15px;
+    top: 50px;
+    font-size: 15px;
+    color: black;
+    background-color: lightgray;
+    height: 18px;
+    width: 20px;
+    text-align: center;
+    padding-top: 2px;
+    border-radius: 3px;
+}
+
+
 .card_image {
     position: relative;
     margin: auto;
     width: 175px;
     height: 200px;
-    margin-top: 35px;
-    margin-bottom: 35px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
 
+.photo img{
+    height: 200px;
+    width: 175px;
 }
 
 .card_image img {
-    height: 100%;
-    width: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 200px;
+    max-width: 200px;
 }
 
 .bottom {
@@ -501,168 +623,14 @@ li:hover .mega_box{
     margin-top: 10px;
 }
 
-.Apple_button{
-    height: 50px;
-    width: 50px;
-    border: none;
-    background-color: white;
-    text-align: center;
-    border-radius: 50%;
-    line-height: 50%;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    opacity: 40%;
-    transform: translateY(-50%);
-    transition: 0.5s;
-}
-
-#A_left_button {
-    left: -50px;
-}
-
-#A_right_button {
-    right: -50px;
-}
-
-.Apple_card:hover {
-    width: 255px;
-    height: 355px;
-    box-shadow: 2px 2px 15px rgb(225, 225, 225), -2px -2px 15px rgb(225, 225, 225);
-    margin-top: 7.5px;
-}
-
-.Apple_card:first-child {
-    margin-left: 7px;
-}
-
-.Apple_card:last-child {
-    margin-right: 7px;
-}
-
-.Apple_button:hover {
-    opacity: 100%;
-}
 .buy:hover {
     background-color: rgb(0, 115, 255);
     cursor: pointer;
 }
 
-/*Samsung slider*/
-.Samsung {
-    font-family: sans-serif;
-    color: rgb(29, 29, 31);
-    margin-top: 50px;
-    text-align: center;
-    margin-bottom: 0;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-.Samsung a {
-    text-decoration: none;
-    color: rgb(29, 29, 31);
-}
-
-.Samsung_slider {
-    max-width: 1055px;
-    width: 100%;
-    margin: auto;
-    position: relative;
-}
-
-.Samsung_cards_frame {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 10px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-}
-
-.Samsung_card {
-    scroll-snap-align: start;
-    position: relative;
-    width: 250px;
-    height: 350px;
-    border: 2px solid white;
-    border-radius: 20px;
-    background-color: white;
-    box-shadow: 2px 2px 10px rgb(235, 235, 235) , -2px -2px 10px rgb(235, 235, 235);
-    cursor: pointer;
-    transition: 0.5s;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-.Samsung_button{
-    height: 50px;
-    width: 50px;
-    border: none;
-    background-color: white;
-    text-align: center;
-    border-radius: 50%;
-    line-height: 50%;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    opacity: 40%;
-    transform: translateY(-50%);
-    transition: 0.5s;
-}
-
-#S_left_button {
-    left: -50px;
-}
-
-#S_right_button {
-    right: -50px;
-}
-
-.Samsung_card:hover {
+.card:hover {
     width: 255px;
     height: 355px;
     box-shadow: 2px 2px 15px rgb(225, 225, 225), -2px -2px 15px rgb(225, 225, 225);
     margin-top: 7.5px;
-}
-
-.Samsung_button:hover {
-    opacity: 100%;
-}
-
-.S_product {
-    color: rgb(29, 29, 31);
-    font-family: sans-serif;
-    height: 45px;
-    font-weight: 600;
-    font-size: 20px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-top: 15px;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    display: flex;
-}
-
-.S_card_image {
-    position: relative;
-    margin: auto;
-    width: 175px;
-    height: 200px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-.S_card_image img {
-    height: 100%;
-    width: 100%;
-}
-
-.S_bottom {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
 }
