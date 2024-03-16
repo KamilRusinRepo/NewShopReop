@@ -522,3 +522,11 @@ li:hover .mega_box{
     color: rgb(125, 125, 125);
     margin: auto;
 }
+
+select {
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 20px;
+    margin-left: 55px;
+}

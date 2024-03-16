@@ -19,4 +19,18 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query("SELECT i FROM Item i WHERE i.make = ?1")
     List<Item> findTop7ByMake(String make);
+
+    @Query("SELECT i FROM Item i WHERE i.make = ?1 ORDER BY CASE WHEN ?2 = 'fullName' THEN i.fullName " +
+            "WHEN ?2 = 'type' THEN i.type END DESC")
+    List<Item> findByMakeAndOrderBy(String make, String sort);
+
+    @Query("SELECT i FROM Item i WHERE i.make = ?1 ORDER BY i.price")
+    List<Item> findByMakeAndOrderByPrice(String make);
+
+    @Query("SELECT i FROM Item i WHERE i.type = ?1 ORDER BY i.price")
+    List<Item> findByCategoryAndOrderByPrice(String category);
+
+    @Query("SELECT i FROM Item i WHERE i.type = ?1 ORDER BY CASE WHEN ?2 = 'fullName' THEN i.fullName " +
+            "WHEN ?2 = 'brand' THEN i.make END ASC ")
+    List<Item> findByCategoryOrderBy(String category, String sort);
 }

@@ -6,13 +6,11 @@ import com.shop.prshop.repository.UserRepository;
 import com.shop.prshop.service.UserServiceImpl;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -126,11 +124,16 @@ public class SecurityController {
     }
 
     @PostMapping("/sendResetPasswordLink")
-    public String sendResetPasswordLink(HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException {
+    public String sendResetPasswordLink(HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException, UsernameNotFoundException {
         String email = request.getParameter("email");
+
+
         try {
             userService.updateResetPassword(email,request.getRequestURL().toString().replace(request.getServletPath(), ""));
             model.addAttribute("success", true);
+        }
+        catch(UsernameNotFoundException e) {
+            model.addAttribute("errorUser", true);
         }
         catch (UnsupportedEncodingException | MessagingException e) {
             model.addAttribute("error", "Error while sending email");

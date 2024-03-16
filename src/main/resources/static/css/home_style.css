@@ -554,6 +554,7 @@ li:hover .mega_box{
     top: 48px;
     font-size: 20px;
     color: red;
+    z-index: 1;
 }
 
 .edit_icon {
@@ -568,6 +569,7 @@ li:hover .mega_box{
     text-align: center;
     padding-top: 2px;
     border-radius: 3px;
+    z-index: 1;
 }
 
 

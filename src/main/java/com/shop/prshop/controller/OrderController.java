@@ -31,16 +31,12 @@ public class OrderController {
 
     private final CartService cartService;
     private final OrderService orderService;
-    private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
-    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
-
     @Autowired
-    public OrderController(CartService cartService, OrderService orderService, UserRepository userRepository, OrderRepository orderRepository, OrderItemRepository orderItemRepository) {
+    public OrderController(CartService cartService, OrderService orderService, OrderRepository orderRepository, OrderItemRepository orderItemRepository) {
         this.cartService = cartService;
         this.orderService = orderService;
-        this.userRepository = userRepository;
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
     }
@@ -71,19 +67,9 @@ public class OrderController {
 
     @GetMapping("/checkout")
     public String showCheckout(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null && !authentication.getName().equals("anonymousUser")) {
-            String email = authentication.getName();
-            logger.info("email: " + email);
-            Optional<User> optionalUser = userRepository.findByEmail(email);
-            User user = optionalUser.get();
-            OrderDto orderDto = OrderMapper.mapToOrderDto(user);
-            model.addAttribute("orderDto", orderDto);
-        }
-        else {
-            OrderDto orderDto = new OrderDto();
-            model.addAttribute("orderDto", orderDto);
-        }
+        OrderDto orderDto = orderService.orderLoginInChecker();
+        model.addAttribute("orderDto", orderDto);
+
         return "checkout";
     }
 

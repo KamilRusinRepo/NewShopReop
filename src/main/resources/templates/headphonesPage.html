@@ -19,6 +19,15 @@
 
         <div class="products_menu">
 
+            <form th:action="@{/headphonesPage}" th:unless="${#lists.isEmpty(items)}" method="GET">
+                <select name = sort onchange="this.form.submit()">
+                    <option value="none" th:selected="(${sort} == 'none')">None</option>
+                    <option value="fullName" th:selected="(${sort} == 'fullName')">Model</option>
+                    <option value="price" th:selected="(${sort} == 'price')">Price</option>
+                    <option value="brand" th:selected="(${sort} == 'brand')">Brand</option>
+                </select>
+            </form>
+
             <div class="products" th:unless="${#lists.isEmpty(items)}">
 
                 <div class="card" th:each="item : ${items}">

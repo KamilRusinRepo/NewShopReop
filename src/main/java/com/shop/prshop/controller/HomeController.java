@@ -4,6 +4,7 @@ import com.shop.prshop.Cart;
 import com.shop.prshop.model.Item;
 import com.shop.prshop.repository.ItemRepository;
 import com.shop.prshop.service.CartService;
+import com.shop.prshop.service.HomeService;
 import jakarta.servlet.http.HttpSession;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.hibernate.query.spi.Limit;
@@ -22,28 +23,28 @@ import java.util.Optional;
 
 @Controller
 public class HomeController {
-
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     private final CartService cartService;
-    private final ItemRepository itemRepository;
+    private final HomeService homeService;
 
     @Autowired
-    public HomeController(CartService cartService, ItemRepository itemRepository) {
+    public HomeController(CartService cartService, HomeService homeService) {
         this.cartService = cartService;
-        this.itemRepository = itemRepository;
+        this.homeService = homeService;
     }
 
     @GetMapping("/")
     public String home(Model model){
-        model.addAttribute("apple", itemRepository.findTop7ByMake("Apple").stream().limit(6).toList());
-        model.addAttribute("samsung", itemRepository.findTop7ByMake("Samsung").stream().limit(6).toList());
+        model.addAttribute("apple", homeService.findItemsTop6ByMake("Apple"));
+        model.addAttribute("samsung", homeService.findItemsTop6ByMake("Samsung"));
         return "home";
     }
 
     @GetMapping("/applepage")
-    public String applePage(Model model) {
-        List<Item> items = itemRepository.findByMake("Apple");
+    public String applePage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForBrandPages("Apple", sort);
+
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "applepage";
     }
 
@@ -66,51 +67,59 @@ public class HomeController {
     }
 
     @GetMapping("/samsungPage")
-    public String showSamsungPage(Model model) {
-        List<Item> items = itemRepository.findByMake("Samsung");
+    public String showSamsungPage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForBrandPages("Samsung", sort);
+
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "samsungPage";
     }
 
     @GetMapping("/phonesPage")
-    public String showPhonesPage(Model model) {
-        List<Item> items = itemRepository.findByCategory("Phone");
+    public String showPhonesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForCategoryPages("Phone", sort);
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "phonesPage";
     }
 
     @GetMapping("/laptopsPage")
-    public String showLaptopsPage(Model model) {
-        List<Item> items = itemRepository.findByCategory("Laptop");
+    public String showLaptopsPage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForCategoryPages("Laptop", sort);
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "laptopsPage_style";
     }
 
     @GetMapping("/tabletsPage")
-    public String showTabletsPage(Model model) {
-        List<Item> items = itemRepository.findByCategory("Tablet");
+    public String showTabletsPage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForCategoryPages("Tablet", sort);
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "tabletsPage";
     }
 
     @GetMapping("/headphonesPage")
-    public String showHeadphonesPage(Model model) {
-        List<Item> items = itemRepository.findByCategory("Headphones");
+    public String showHeadphonesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForCategoryPages("Headphones", sort);
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "headphonesPage";
     }
 
     @GetMapping("/watchesPage")
-    public String showWatchesPage(Model model) {
-        List<Item> items = itemRepository.findByCategory("Watch");
+    public String showWatchesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForCategoryPages("Watches", sort);
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "watchesPage";
     }
 
     @GetMapping("/accessoriesPage")
-    public String showAccessoriesPage(Model model) {
-        List<Item> items = itemRepository.findByCategory("Accessories");
+    public String showAccessoriesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
+        List<Item> items = homeService.findItemsForCategoryPages("Accessories", sort);
         model.addAttribute("items", items);
+        model.addAttribute("sort", sort);
         return "accessoriesPage";
     }
 }

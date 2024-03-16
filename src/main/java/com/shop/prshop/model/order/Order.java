@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -45,7 +46,8 @@ public class Order {
     @Column(name = "created")
     private LocalDateTime created;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     private List<OrderItem> orderItems;
 
     public Order() {
@@ -105,4 +107,12 @@ public class Order {
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
+//
+//    public void add(OrderItem orderItem) {
+//        if(orderItems == null) {
+//            orderItems = new ArrayList<>();
+//        }
+//        orderItems.add(orderItem);
+//        orderItem.setOrder(this);
+//    }
 }

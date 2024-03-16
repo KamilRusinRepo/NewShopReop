@@ -38,21 +38,21 @@ public class OrderItem {
     @Column(name = "order_date")
     private String orderDate;
 
-    @ManyToOne
-    @JoinColumn(name = "order_detail_id")
-    private Order order;
+    @Column(name = "order_id")
+    private Long orderId;
 
     public OrderItem() {
 
     }
 
-    public OrderItem(Long itemId, int amount, BigDecimal price, String itemFullName, String itemImage) {
+    public OrderItem(Long itemId, int amount, BigDecimal price, String itemFullName, String itemImage, Long orderId) {
         this.itemId = itemId;
         this.amount = amount;
         this.price = price;
         this.itemFullName = itemFullName;
         this.itemImage = itemImage;
         this.orderDate = formatOrderDate(LocalDateTime.now());
+        this.orderId = orderId;
     }
 
     private String formatOrderDate(LocalDateTime now) {
@@ -82,16 +82,16 @@ public class OrderItem {
         return amount;
     }
 
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public BigDecimal getPrice() {
@@ -125,4 +125,5 @@ public class OrderItem {
     public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
+
 }

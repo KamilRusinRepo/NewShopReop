@@ -15,7 +15,9 @@
     <div class="main_content">
         <div class="ordered_items">
             <div class="ordered_item" th:each="cartItem : ${@cart.cartItems}">
-                <img th:src="@{${cartItem.item.image}}">
+                <div class="image_container">
+                    <img th:src="@{${cartItem.item.image}}">
+                </div>
                 <p class="product_name" th:text="${cartItem.item.fullName}"></p>
                 <p class="quantity" th:text="${cartItem.counter}"></p>
                 <p class="price"><span th:text="${cartItem.price}"></span>zł</p>

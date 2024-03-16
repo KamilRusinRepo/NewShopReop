@@ -43,7 +43,7 @@ public class OrderMapper {
         List<OrderItem> orderItems = new ArrayList<>();
         for(CartItem ci : cart.getCartItems()) {
             Item item = ci.getItem();
-            orderItems.add(new OrderItem(ci.getItem().getId(), ci.getCounter(), ci.getPrice(), item.getFullName(), item.getImage()));
+            orderItems.add(new OrderItem(ci.getItem().getId(), ci.getCounter(), ci.getPrice(), item.getFullName(), item.getImage(), order.getOrderId()));
         }
         return orderItems;
     }

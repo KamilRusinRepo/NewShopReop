@@ -319,16 +319,27 @@ li:hover .mega_box{
     box-shadow: 0.5px 0.5px 10px rgb(211, 210, 210);
 }
 
-.ordered_item img {
-    margin-left: 10px;
+.image_container {
     width: 50px;
     height: 60px;
+    margin-right: 5px;
+}
+
+.image_container img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: 10px;
+    max-width: 50px;
+    max-height: 60px;
 }
 
 .product_name {
     width: 200px;
     font-size: 20px;
     display: flex;
+    margin-left: 10px;
 }
 
 .quantity {
@@ -338,7 +349,7 @@ li:hover .mega_box{
 
 .price {
     font-size: 20px;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 
@@ -367,6 +378,7 @@ li:hover .mega_box{
     padding-bottom: 20px;
     border-radius: 20px;
     box-shadow: 1px 1px 10px rgb(211, 210, 210);
+    height: fit-content;
 }
 
 .name {
