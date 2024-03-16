@@ -1,2 +1,2 @@
 # NewShopReop
-Shop project in progress
+Shop project in progress...
