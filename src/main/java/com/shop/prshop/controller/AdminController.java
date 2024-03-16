@@ -24,17 +24,24 @@ public class AdminController {
     }
 
     @GetMapping("/additem")
-    private String adminPage(Model model) {
+    public String addItem(Model model) {
         Item item = new Item();
         model.addAttribute("item", item);
         return "additem";
     }
 
     @PostMapping("/save")
-    private String addItem(@ModelAttribute("item") Item item) {
+    public String saveItem(@ModelAttribute("item") Item item) {
         adminService.saveItem(item);
 
         return "redirect:/acountPage";
+    }
+
+    @PostMapping("/saveUpdatedItem")
+    public String saveUpdatedItem(@ModelAttribute("item") Item item, @RequestParam("path") String path) {
+        adminService.saveItem(item);
+
+        return "redirect:" + path;
     }
 
     @GetMapping("/delete/{itemId}")
@@ -52,6 +59,7 @@ public class AdminController {
         if(optionalItem.isPresent()) {
             Item itemToUpdate = optionalItem.get();
             model.addAttribute("item", itemToUpdate);
+            model.addAttribute("path", path);
         }
         else {
             model.addAttribute("errorMsg", "Item with id:" + id + "not found");

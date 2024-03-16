@@ -16,6 +16,7 @@
                 <th>Item Id</th>
                 <th>Amount</th>
                 <th>Total Price</th>
+                <th>Full Name</th>
                 <th>Image</th>
             </tr>
             </thead>
@@ -24,6 +25,7 @@
                 <td th:text="${item.itemId}"></td>
                 <td th:text="${item.amount}"></td>
                 <td th:text="${item.price} + 'zl'"></td>
+                <td th:text="${item.itemFullName}"></td>
                 <td>
                     <img th:src="@{${item.itemImage}}" class="img-fluid" style="max-width: 50px; max-height: 50px">
                 </td>
