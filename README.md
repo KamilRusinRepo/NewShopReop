@@ -42,6 +42,6 @@ Functions comming soon:
 - Delete account
 - Admin can modify users roles
 - View of the account page will be changed
-- Interactive item pages with description of this product, comments and rating system, you will be able to configure product
+- Interactives item pages with product description, comments and rating system, you will be able to configure product
 - Frontend will be developed using Angular
-- Containerization of the application
+- Containerization of the application using Docker
