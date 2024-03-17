@@ -1,14 +1,14 @@
-#Table Of Contents
+# Table Of Contents
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Functions](#functions)
 * [Video](#video)
-* [Further plans for development](#further_plans_for_development)
+* [Further plans for development](#further-plans-for-development)
 
-#General info
+# General info
 The project showcases an online store where, as an admin, you can manage products, users can log in to the store, place orders, view their order history, and much more. I encourage you to watch the video demonstrating the store's functionality.
 
-#Technologies
+# Technologies
 * Java 17
 * Spring Boot
 * Spring Security
@@ -19,7 +19,7 @@ The project showcases an online store where, as an admin, you can manage product
 * Bootrap
 * Tailwind
 
-#Functions:
+# Functions
 - Rejestration/Login system
 - Email verification
 - Add/Update/Delete item to the store
@@ -34,9 +34,8 @@ The project showcases an online store where, as an admin, you can manage product
 - Autofill user data during checkout when the user is logged in
 - Users can view their orders
 
-#Video
-
-#Further plans for development
+# Video 
+# Further plans for development 
 Functions comming soon:
 - Function which inform you that your email is not verified
 - Delete account
