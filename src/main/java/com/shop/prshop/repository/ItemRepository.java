@@ -11,14 +11,14 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    @Query("SELECT i FROM Item i WHERE i.make = ?1")
+    @Query("SELECT i FROM Item i WHERE i.make = ?1 ORDER BY i.id")
     List<Item> findByMake(String make);
 
-    @Query("SELECT i FROM Item i WHERE i.type = ?1")
+    @Query("SELECT i FROM Item i WHERE i.type = ?1 ORDER BY i.id")
     List<Item> findByCategory(String category);
 
-    @Query("SELECT i FROM Item i WHERE i.make = ?1")
-    List<Item> findTop7ByMake(String make);
+    @Query("SELECT i FROM Item i WHERE i.make = ?1 ORDER BY i.id")
+    List<Item> findTop6ByMake(String make);
 
     @Query("SELECT i FROM Item i WHERE i.make = ?1 ORDER BY CASE WHEN ?2 = 'fullName' THEN i.fullName " +
             "WHEN ?2 = 'type' THEN i.type END DESC")
