@@ -1,21 +1,43 @@
-Web store 
+#Table Of Contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Functions](#functions)
+* [Video](#video)
+* [Further plans for development](#further_plans_for_development)
 
-Functions:
+#General info
+The project showcases an online store where, as an admin, you can manage products, users can log in to the store, place orders, view their order history, and much more. I encourage you to watch the video demonstrating the store's functionality.
+
+#Technologies
+* Java 17
+* Spring Boot
+* Spring Security
+* Thymeleaf
+* PostgreSQL
+* HTML
+* CSS
+* Bootrap
+* Tailwind
+
+#Functions:
 - Rejestration/Login system
-- Add/Update/Delete item to the store 
+- Email verification
+- Add/Update/Delete item to the store
 - Admin can modify or delete items from Admin Panel or shop position
 - Pages with items
 - Order system
 - Cart system
 - Admin Panel where admin can view list of: users, items, orders
 - Change password system
-- Authorization system
-- Email verification
-- Autofill user data during checkout when the user is logged in
 - Forgot password system
+- Authorization system
+- Autofill user data during checkout when the user is logged in
 - Users can view their orders
 
-Comming soon:
+#Video
+
+#Further plans for development
+Functions comming soon:
 - Function which inform you that your email is not verified
 - Delete account
 - Admin can modify users roles
