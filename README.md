@@ -1,9 +1,8 @@
-Shop Project in progress
+Web store 
 
 Functions:
 - Rejestration/Login system
-- Adding item to shop
-- Update/Delete item 
+- Add/Update/Delete item to the store 
 - Admin can modify or delete items from Admin Panel or shop position
 - Pages with items
 - Order system
@@ -12,13 +11,15 @@ Functions:
 - Change password system
 - Authorization system
 - Email verification
-
-Coming soon:
-- Forgot password system  <-- now in progress
-- Function which inform you that your email is not verified
+- Autofill user data during checkout when the user is logged in
+- Forgot password system
 - Users can view their orders
+
+Comming soon:
+- Function which inform you that your email is not verified
 - Delete account
 - Admin can modify users roles
-- Account page
+- View of the account page will be changed
 - Interactive item pages with description of this product, comments and rating system, you will be able to configure product
-  
+- Frontend will be developed using Angular
+- Containerization of the application
