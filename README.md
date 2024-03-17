@@ -33,6 +33,7 @@ The project showcases an online store where, as an admin, you can manage product
 - Authorization system
 - Autofill user data during checkout when the user is logged in
 - Users can view their orders
+- Sorting items
 
 # Video 
 # Further plans for development 
