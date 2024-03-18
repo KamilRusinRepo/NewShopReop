@@ -18,6 +18,7 @@ The project showcases an online store where, as an admin, you can manage product
 * CSS
 * Bootrap
 * Tailwind
+* JavaScript
 
 # Functions
 - Rejestration/Login system
@@ -30,7 +31,7 @@ The project showcases an online store where, as an admin, you can manage product
 - Admin Panel where admin can view list of: users, items, orders
 - Change password system
 - Forgot password system
-- Authorization system
+- Authorization and Authentication user
 - Autofill user data during checkout when the user is logged in
 - Users can view their orders
 - Sorting items
@@ -42,6 +43,6 @@ Functions comming soon:
 - Delete account
 - Admin can modify users roles
 - View of the account page will be changed
-- Interactive item pages with description of this product, comments and rating system, you will be able to configure product
+- Interactives item pages with product description, comments and rating system, you will be able to configure product
 - Frontend will be developed using Angular
-- Containerization of the application
+- Containerization of the application using Docker
