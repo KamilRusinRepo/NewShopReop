@@ -37,6 +37,9 @@ The project showcases an online store where, as an admin, you can manage product
 - Sorting items
 
 # Video 
+Watch a shop overview video
+<iframe src="https://www.youtube.com/watch?v=kWlLpYGI19c" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
 # Further plans for development 
 Functions comming soon:
 - Function which inform you that your email is not verified
