@@ -18,6 +18,7 @@ The project showcases an online store where, as an admin, you can manage product
 * CSS
 * Bootrap
 * Tailwind
+* JavaScript
 
 # Functions
 - Rejestration/Login system
