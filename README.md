@@ -31,7 +31,7 @@ The project showcases an online store where, as an admin, you can manage product
 - Admin Panel where admin can view list of: users, items, orders
 - Change password system
 - Forgot password system
-- Authorization system
+- Authorization and Authentication user
 - Autofill user data during checkout when the user is logged in
 - Users can view their orders
 - Sorting items
