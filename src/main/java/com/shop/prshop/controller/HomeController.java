@@ -45,7 +45,7 @@ public class HomeController {
 
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "applepage";
+        return "categoryPage";
     }
 
     @GetMapping("/add/{itemId}")
@@ -72,7 +72,7 @@ public class HomeController {
 
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "samsungPage";
+        return "categoryPage";
     }
 
     @GetMapping("/phonesPage")
@@ -80,7 +80,7 @@ public class HomeController {
         List<Item> items = homeService.findItemsForCategoryPages("Phone", sort);
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "phonesPage";
+        return "categoryPage";
     }
 
     @GetMapping("/laptopsPage")
@@ -88,7 +88,7 @@ public class HomeController {
         List<Item> items = homeService.findItemsForCategoryPages("Laptop", sort);
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "laptopsPage_style";
+        return "categoryPage";
     }
 
     @GetMapping("/tabletsPage")
@@ -96,7 +96,7 @@ public class HomeController {
         List<Item> items = homeService.findItemsForCategoryPages("Tablet", sort);
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "tabletsPage";
+        return "categoryPage";
     }
 
     @GetMapping("/headphonesPage")
@@ -104,15 +104,15 @@ public class HomeController {
         List<Item> items = homeService.findItemsForCategoryPages("Headphones", sort);
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "headphonesPage";
+        return "categoryPage";
     }
 
     @GetMapping("/watchesPage")
     public String showWatchesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
-        List<Item> items = homeService.findItemsForCategoryPages("Watches", sort);
+        List<Item> items = homeService.findItemsForCategoryPages("Watch", sort);
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "watchesPage";
+        return "categoryPage";
     }
 
     @GetMapping("/accessoriesPage")
@@ -120,6 +120,6 @@ public class HomeController {
         List<Item> items = homeService.findItemsForCategoryPages("Accessories", sort);
         model.addAttribute("items", items);
         model.addAttribute("sort", sort);
-        return "accessoriesPage";
+        return "categoryPage";
     }
 }

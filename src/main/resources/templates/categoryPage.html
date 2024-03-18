@@ -2,17 +2,16 @@
 <html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
-    <title>Phones page</title>
+    <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../css/categories_style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <!-- navigation menu -->
-    <div th:replace="fragments/navigation_menu :: navigation"></div>
+<!-- navigation menu -->
+<div th:replace="fragments/navigation_menu :: navigation"></div>
 
-    <!-- main content -->
-    <div class="main_content">
-
+<!-- main content -->
+<div class="main_content">
 
     <div th:if="${#lists.isEmpty(items)}" class="itemNotFound">
         <p>No item of this category found<p>
@@ -20,12 +19,12 @@
 
     <div class="products_menu">
 
-        <form th:action="@{/phonesPage}" th:unless="${#lists.isEmpty(items)}" method="GET">
+        <form th:action="@{/applepage}" th:unless="${#lists.isEmpty(items)}" method="GET">
             <select name = sort onchange="this.form.submit()">
                 <option value="none" th:selected="(${sort} == 'none')">None</option>
                 <option value="fullName" th:selected="(${sort} == 'fullName')">Model</option>
                 <option value="price" th:selected="(${sort} == 'price')">Price</option>
-                <option value="brand" th:selected="(${sort} == 'brand')">Brand</option>
+                <option value="type" th:selected="(${sort} == 'type')">Type</option>
             </select>
         </form>
 
@@ -45,7 +44,7 @@
                     </div>
                     <div class="bottom">
                         <p class="price">From <span th:text="${item.price}"></span>zł</p>
-                        <a th:href="@{'/add/' + ${item.id}}" class="buy"><p>Buy</p></a>
+                        <a th:href="@{'/add/' + ${item.id}(path='/applepage')}" class="buy"><p>Buy</p></a>
                     </div>
                 </div>
             </div>
@@ -164,6 +163,5 @@
         }
     };
 </script>
-
 </body>
 </html>
