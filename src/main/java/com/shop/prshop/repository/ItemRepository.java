@@ -18,7 +18,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByCategory(String category);
 
     @Query("SELECT i FROM Item i WHERE i.make = ?1 ORDER BY i.id")
-    List<Item> findTop6ByMake(String make);
+    List<Item> findTop6ByItemMake(String make);
 
     @Query("SELECT i FROM Item i WHERE i.make = ?1 ORDER BY CASE WHEN ?2 = 'fullName' THEN i.fullName " +
             "WHEN ?2 = 'type' THEN i.type END DESC")

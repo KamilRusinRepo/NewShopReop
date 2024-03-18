@@ -24,7 +24,7 @@
                     <th>Make</th>
                     <th>Model</th>
                     <th>Full Name</th>
-                    <th class="image">Image</th>
+                    <th>Image</th>
                     <th>Price</th>
                     <th>Action</th>
                 </tr>
@@ -35,7 +35,7 @@
                     <td th:text="${item.make}"></td>
                     <td th:text="${item.model}"></td>
                     <td th:text="${item.fullName}"></td>
-                    <td th:text="${item.image}"></td>
+                    <td><div class="for_wrap"><img th:src="@{${item.image}}"></div></td>
                     <td th:text="${item.price}"></td>
                     <td>
                         <a th:href="@{'/admin/showUpdateForm/' + ${item.id}(path='/admin/showItems')}" class="update_button">

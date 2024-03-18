@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
     public void sendResetPasswordEmail(User user, String siteUrl) throws MessagingException, UnsupportedEncodingException {
         String fromAddress = "sys.for.verif@gamil.com";
         String senderName = "Premium Reseler";
-        String subject = "Please verify your registration";
+        String subject = "Link to reset your password";
         String content = "Dear [[name]],<br>" +
                 "Click the link below to reset your password:<br>" +
                 "<h3><a href=[[url]]>RESET PASSWORD</a></h3>" +

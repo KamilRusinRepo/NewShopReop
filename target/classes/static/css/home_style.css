@@ -254,7 +254,7 @@ body {
     left: 0;
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s;
+    transition: 0.2s 0.1s;
 }
 
 .content {
@@ -480,7 +480,7 @@ li:hover .mega_box{
 .Samsung_cards_frame {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 255px));
+    grid-template-columns: repeat(auto-fill, minmax(255px, 255px));
     grid-gap: 10px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;

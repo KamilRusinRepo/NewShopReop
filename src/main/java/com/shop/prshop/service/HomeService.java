@@ -18,7 +18,7 @@ public class HomeService {
         this.itemRepository = itemRepository;
     }
     public Collection<Item> findItemsTop6ByMake(String make) {
-        return itemRepository.findTop6ByMake(make).stream().limit(6).toList();
+        return itemRepository.findTop6ByItemMake(make).stream().limit(6).toList();
     }
 
     public List<Item> findItemsByCategory(String category) {
