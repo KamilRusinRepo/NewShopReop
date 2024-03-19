@@ -37,8 +37,9 @@ The project showcases an online store where, as an admin, you can manage product
 - Sorting items
 
 # Video 
-Watch a shop overview video
-<iframe src="https://www.youtube.com/watch?v=kWlLpYGI19c" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+Click photo to watch
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/kWlLpYGI19c/0.jpg)](https://www.youtube.com/watch?v=kWlLpYGI19c)
 
 # Further plans for development 
 Functions comming soon:
