@@ -6,7 +6,7 @@
 * [Further plans for development](#further-plans-for-development)
 
 # General info
-The project showcases an online store where, as an admin, you can manage products, users can log in to the store, place orders, view their order history, and much more. I encourage you to watch the video demonstrating the store's functionality.
+The project showcases an online store where, as an admin, you can manage products, users can log in to the store, place orders, view their order history, and many more. I encourage you to watch the video demonstrating the store's functionality.
 
 # Technologies
 * Java 17
@@ -37,6 +37,10 @@ The project showcases an online store where, as an admin, you can manage product
 - Sorting items
 
 # Video 
+Click photo to watch
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/kWlLpYGI19c/0.jpg)](https://www.youtube.com/watch?v=kWlLpYGI19c)
+
 # Further plans for development 
 Functions comming soon:
 - Function which inform you that your email is not verified
