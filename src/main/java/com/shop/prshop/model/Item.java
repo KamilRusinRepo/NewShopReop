@@ -1,12 +1,14 @@
 package com.shop.prshop.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "item")
+@Builder
 public class Item {
 
     @Id
@@ -32,6 +34,16 @@ public class Item {
     @Column(name = "image")
     private String image;
 
+    public Item(Long id, String type, String make, String model, String fullName, BigDecimal price, String image) {
+        this.id = id;
+        this.type = type;
+        this.make = make;
+        this.model = model;
+        this.fullName = fullName;
+        this.price = price;
+        this.image = image;
+
+    }
     public Item(String type, String make, String model, String fullName, BigDecimal price, String image) {
        this.type = type;
        this.make = make;

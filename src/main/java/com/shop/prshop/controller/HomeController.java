@@ -61,12 +61,12 @@ public class HomeController {
         return "acountpage";
     }
 
-    @GetMapping("/productPage")
+    @GetMapping("/productpage")
     public String showProductPage() {
         return "productPage";
     }
 
-    @GetMapping("/samsungPage")
+    @GetMapping("/samsungpage")
     public String showSamsungPage(@RequestParam(defaultValue = "none") String sort, Model model) {
         List<Item> items = homeService.findItemsForBrandPages("Samsung", sort);
 
@@ -75,7 +75,7 @@ public class HomeController {
         return "samsungPage";
     }
 
-    @GetMapping("/phonesPage")
+    @GetMapping("/phonespage")
     public String showPhonesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
         List<Item> items = homeService.findItemsForCategoryPages("Phone", sort);
         model.addAttribute("items", items);
@@ -83,7 +83,7 @@ public class HomeController {
         return "phonesPage";
     }
 
-    @GetMapping("/laptopsPage")
+    @GetMapping("/laptopspage")
     public String showLaptopsPage(@RequestParam(defaultValue = "none") String sort, Model model) {
         List<Item> items = homeService.findItemsForCategoryPages("Laptop", sort);
         model.addAttribute("items", items);
@@ -91,7 +91,7 @@ public class HomeController {
         return "laptopsPage";
     }
 
-    @GetMapping("/tabletsPage")
+    @GetMapping("/tabletspage")
     public String showTabletsPage(@RequestParam(defaultValue = "none") String sort, Model model) {
         List<Item> items = homeService.findItemsForCategoryPages("Tablet", sort);
         model.addAttribute("items", items);
@@ -99,7 +99,7 @@ public class HomeController {
         return "tabletsPage";
     }
 
-    @GetMapping("/headphonesPage")
+    @GetMapping("/headphonespage")
     public String showHeadphonesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
         List<Item> items = homeService.findItemsForCategoryPages("Headphones", sort);
         model.addAttribute("items", items);
@@ -107,7 +107,7 @@ public class HomeController {
         return "headphonesPage";
     }
 
-    @GetMapping("/watchesPage")
+    @GetMapping("/watchespage")
     public String showWatchesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
         List<Item> items = homeService.findItemsForCategoryPages("Watch", sort);
         model.addAttribute("items", items);
@@ -115,7 +115,7 @@ public class HomeController {
         return "watchesPage";
     }
 
-    @GetMapping("/accessoriesPage")
+    @GetMapping("/accessoriespage")
     public String showAccessoriesPage(@RequestParam(defaultValue = "none") String sort, Model model) {
         List<Item> items = homeService.findItemsForCategoryPages("Accessories", sort);
         model.addAttribute("items", items);

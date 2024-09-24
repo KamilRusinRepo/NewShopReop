@@ -44,6 +44,7 @@ public class AdminController {
         return "redirect:" + path;
     }
 
+    //TODO: change GetMapping annotation to DeleteMapping
     @GetMapping("/delete/{itemId}")
     public String deleteItem(@PathVariable("itemId") Long id, @RequestParam String path) {
         adminService.deleteItem(id);
