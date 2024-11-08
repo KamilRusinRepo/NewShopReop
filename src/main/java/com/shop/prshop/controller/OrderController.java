@@ -65,7 +65,7 @@ public class OrderController {
         return "cartview";
     }
 
-    @GetMapping("/checkout")
+    @GetMapping("/Checkout")
     public String showCheckout(Model model) {
         OrderDto orderDto = orderService.orderLoginInChecker();
         model.addAttribute("orderDto", orderDto);

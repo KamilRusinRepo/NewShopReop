@@ -35,7 +35,7 @@
             <p>Total:</p>
             <p><span th:text="${@cart.sum}"></span>zł</p>
             </div>
-            <a th:href="@{'/cart/checkout'}"><button class="checkout">Checkout</button></a>
+            <a th:href="@{'/cart/Checkout'}"><button class="checkout">Checkout</button></a>
         </div>
     </div>
     <div th:unless="${@cart.counter}" class="empty">
