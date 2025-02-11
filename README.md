@@ -19,6 +19,7 @@ The project showcases an online store where, as an admin, you can manage product
 * Bootrap
 * Tailwind
 * JavaScript
+* Docker
 
 # Functions
 - Rejestration/Login system
@@ -49,4 +50,3 @@ Functions comming soon:
 - View of the account page will be changed
 - Interactives item pages with product description, comments and rating system, you will be able to configure product
 - Frontend will be developed using Angular
-- Containerization of the application using Docker
